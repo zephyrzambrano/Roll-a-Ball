@@ -2,15 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
-{
+public class PlayerController : MonoBehaviour {
 
     public float speed;
     private Rigidbody rb;
 
     // Use this for initialization
-    void Start()
-    {
+    void Start() {
         rb = GetComponent<Rigidbody>();
     }
 
@@ -24,4 +22,11 @@ public class PlayerController : MonoBehaviour
 
         rb.AddForce(movement * speed);
     }
+
+    void OnTriggerEnter(Collider other) {
+        if (other.gameObject.CompareTag("PickUp")) {
+            other.gameObject.SetActive(false);
+        }
+    }
+
 }
